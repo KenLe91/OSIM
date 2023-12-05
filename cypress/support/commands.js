@@ -23,3 +23,24 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+import 'cypress-xpath';
+
+Cypress.Commands.add('solveGoogleCAPTCHA', () => {
+  cy.wait(1000);
+  cy.get(`iframe[title='reCAPTCHA']`)
+    .then($iframe => {
+      const $body = $iframe.contents().find('body');
+      cy.wrap($body).find('.recaptcha-checkbox-border')
+        .should('be.visible').click();
+    })
+})
+
+Cypress.Commands.add('getOrderIdFromFailedPayment', () => {
+  cy.get('.payment-fail__content__instruction-message').should('be.visible');
+  cy.get('.account-quick-access-menu > a').should('exist');
+  cy.get('.account-quick-access-menu > a').invoke('attr', 'href').then(($href) => {
+    let orderID = $href.split('/').pop();
+    orderID = orderID.replace('fail?Ref=', '').trim();
+    return cy.wrap(orderID)
+  });
+})

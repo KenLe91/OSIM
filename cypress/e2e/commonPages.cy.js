@@ -1,114 +1,64 @@
 import commonPage from "../pages/commonPage.js";
-const countryCode = ['sg' , 'th' , 'hk' , 'my' , 'tw']
+const countryCode = ['sg', 'hk', 'my', 'tw', 'th']
 Cypress.config('defaultCommandTimeout', 50000);
 
-describe('Verify user can access: HomePage:', () => {
-  countryCode.forEach((country) => {
-    it(`Country: ${country} `, () => {
-      commonPage.visitPages(country,'')
-      cy.url().should('include',country);
-    })
-  })
-})
-
-describe('Verify user can access: Store locator page:', () => {
-  countryCode.forEach((country) => {
-    it(`Country: ${country} `, () => {
-      commonPage.visitPages(country,'/store-locator')
-      cy.url().should('include','store-locator');
-      cy.get('.store-locator').should('be.visible')
-    })
-  })
-})
-
-describe('Verify user can access: Promotions', () => {
-  countryCode.forEach((country) => {
-    it(`Country: ${country} `, () => {
-      commonPage.visitPages(country,'/promotions')
-      cy.url().should('include','promotions');
-      const promotion = commonPage.verifyPromoptionPage(country)
-      cy.get('.visually-hidden').should('have.text',promotion);
-    })
-  })
-})
-
-describe('Verify user can access: Categories Page', () => {
-  countryCode.forEach((country) => {
-    it(`Country: ${country} `, () => {
-      const url = commonPage.urlCategoryPages(country);
-      const categoryName= commonPage.verifyCategoryPage(country);
-      commonPage.visitPages(country,url)
-      cy.url().should('include',url);
-      cy.xpath(`//span[contains(text(),'${categoryName}')]`).should('be.visible');
-    })
-  })
-})
-
-describe('Verify user can access: Product Details Page', () => {
-  countryCode.forEach((country) => {
-    it(`Country: ${country} `, () => {
-      const url = commonPage.urlCategoryPages(country);
-      const productName = commonPage.verifyProductDetails(country);
-      commonPage.visitPages(country,url)
-      cy.url().should('include',url);
-      cy.get('.category-product__main__name__link').contains(productName).click({force: true});
-      cy.get('.product-detail-header__product-name__text').should('have.text',productName);
-    })
-  })
-})
-
-describe('Verify user can access: Wellness-hub page', () => {
-  countryCode.forEach((country) => {
-    it(`Country: ${country} `, () => {
-      commonPage.visitPages(country,'/Wellness-hub')
-      cy.url().should('include','/Wellness-hub');
-      const wellness = commonPage.verifyWellnessHubPage(country);
-      cy.get('.my-account-header__heading__title').should('have.text',wellness);
-    })
-  })
-})
-
-describe('Verify user can access: Support page', () => {
-  countryCode.forEach((country) => {
-    it(`Country: ${country} `, () => {
-      commonPage.visitPages(country,'/Support')
-      cy.url().should('include','/Support');
-      const support = commonPage.verifySupportPage(country);
-      cy.get('.my-account-header__heading__title').should('have.text',support);
-    })
-  })
-})
-
-describe('Verify user can access: Brand Story page', () => {
-  countryCode.forEach((country) => {
-    it(`Country: ${country} `, () => {
-      commonPage.visitPages(country,'/About/Brand-Story')
-      cy.url().should('include','/About/Brand-Story');
-      const brandStory = commonPage.verifyBrandStoryPage(country);
-      cy.get('.carousel-width-icon__heading h2').should('have.text',brandStory);
-    })
-  })
-})
-
-describe('Verify user can access: Contact Us page', () => {
-  countryCode.forEach((country) => {
-    it(`Country: ${country} `, () => {
-      commonPage.visitPages(country,'/Contact-Us')
-      cy.url().should('include','/Contact-Us');
-      const contactUs = commonPage.verifyContactUsPage(country);
-      cy.get('.experience-title').should('have.text',contactUs);
-    })
-  })
-})
-
-describe('Verify user can access: Compare Product page', () => {
-  countryCode.forEach((country) => {
-    it(`Country: ${country} `, () => {
-      commonPage.visitPages(country,'/compare-products')
-      cy.url().should('include','/compare-products');
-      const compareProduct = commonPage.verifyCompareProductPage(country);
-      cy.get('.experience-title').should('have.text',compareProduct);
+describe('Verify user can access:', () => {
+  countryCode.forEach((countryCode) => {
+    commonPage.load_data(countryCode).forEach(({baseURL,country,emailLogin,passwordLogin,verifyPromoptionPage,verifyCategoryPage,urlCategoryPages,verifyProductDetails,
+      verifyWellnessHubPage,verifySupportPage,verifyBrandStoryPage,verifyContactUsPage,verifyCompareProductPage} ) => {
+          it(`HomePage: ${country}`, () => {
+            cy.visit(baseURL);
+            cy.url().should('include',country);
+            cy.get('div[class="hamburger"]').click();
+          })
+          it(`Store Locator: ${country}`, () => {
+            cy.visit(baseURL+"store-locator");
+            cy.url().should('include','store-locator');
+            cy.get('.store-locator').should('be.visible');
+          })
+          it(`Promotions: ${country}`, () => {
+            cy.visit(baseURL+"promotions");
+            cy.url().should('include','promotions');
+            cy.get('.visually-hidden').should('have.text',verifyPromoptionPage);
+          })
+          it(`Categories Page: ${country}`, () => {
+            cy.visit(baseURL+urlCategoryPages);
+            cy.url().should('include',urlCategoryPages);
+            cy.xpath(`//span[contains(text(),'${verifyCategoryPage}')]`).should('be.visible');
+          })
+          it(`Product Details Page: ${country}`, () => {
+            cy.visit(baseURL+urlCategoryPages);
+            cy.url().should('include',urlCategoryPages);
+            cy.get('.category-product__main__name__link').contains(verifyProductDetails).click({force: true});
+            cy.wait(20000);
+            cy.get('.product-detail-header__product-name__text').should('have.text',verifyProductDetails);
+          })
+          it(`Wellness-hub page: ${country}`, () => {
+            cy.visit(baseURL+"Wellness-hub");
+            cy.url().should('include',"Wellness-hub");
+            cy.get('.my-account-header__heading__title').should('have.text',verifyWellnessHubPage);
+          })
+          it(`Support page: ${country}`, () => {
+            cy.visit(baseURL+"Support");
+            cy.url().should('include',"Support");
+            cy.get('.my-account-header__heading__title').should('have.text',verifySupportPage);
+          })
+          it(`Brand Story page: ${country}`, () => {
+            cy.visit(baseURL+"About/Brand-Story");
+            cy.url().should('include',"About/Brand-Story");
+            cy.get('.carousel-width-icon__heading h2').should('have.text',verifyBrandStoryPage);
+          })
+          it(`Contact Us page: ${country}`, () => {
+            cy.visit(baseURL+"Contact-Us");
+            cy.url().should('include',"Contact-Us");
+            cy.get('.experience-title').should('have.text',verifyContactUsPage);
+          })
+          it(`Compare Product page: ${country}`, () => {
+            cy.visit(baseURL+"compare-products");
+            cy.url().should('include',"compare-products");
+            cy.get('.experience-title').should('have.text',verifyCompareProductPage);
       cy.get('.compare-product__container').should('be.visible')
-    })
-  })
+          })
+      })
+  })  
 })
