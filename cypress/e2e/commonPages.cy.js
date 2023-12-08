@@ -25,6 +25,12 @@ describe('Verify user can access:', () => {
             cy.visit(baseURL+urlCategoryPages);
             cy.url().should('include',urlCategoryPages);
             cy.xpath(`//span[contains(text(),'${verifyCategoryPage}')]`).should('be.visible');
+            cy.isPresent('.swiper-slide.category-landing__product.category-product').then(isPresent => {
+              expect(isPresent).to.eq(true)
+            })
+            cy.get('.swiper-slide.category-landing__product.category-product > div > div > .category-product__image > a > img').each(($image) => {
+              cy.wrap($image).should('be.visible').and('have.prop', 'naturalWidth').should('be.greaterThan', 0)
+          })
           })
           it(`Product Details Page: ${country}`, () => {
             cy.visit(baseURL+urlCategoryPages);

@@ -44,3 +44,9 @@ Cypress.Commands.add('getOrderIdFromFailedPayment', () => {
     return cy.wrap(orderID)
   });
 })
+Cypress.Commands.add('isPresent', (elementSelector) => {
+    cy.get('body').then((body) => {
+      const isPresent = !!body.find(elementSelector).length;
+      return cy.wrap(isPresent)// this gives you a Chainable
+    })
+})

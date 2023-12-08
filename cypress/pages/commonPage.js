@@ -1,7 +1,13 @@
 import prod from "../fixtures/prod-test-data.json";
+import preprod from "../fixtures/preprod-test-data.json";
 class commonPage {
     constructor() {
-        this.data = JSON.parse(JSON.stringify(prod));
+        if(Cypress.env("environment").includes('prod')){
+            this.data = JSON.parse(JSON.stringify(prod));
+        }
+        if(Cypress.env("environment").includes('preprod')){
+            this.data = JSON.parse(JSON.stringify(preprod));
+        }
     }
     load_data(countryCode) {
         const countries = {

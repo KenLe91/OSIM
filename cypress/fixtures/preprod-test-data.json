@@ -2,7 +2,7 @@
   "sg": [
   {
     "country": "sg",
-    "baseURL": "https://sg.osim.com/",
+    "baseURL": "https://sg.osim.com/PREPROD",
     "emailLogin": "quyenlm2@smartosc.com",
     "passwordLogin": "abc1234",
     "verifyPromoptionPage" : "OUR PROMOTIONS",

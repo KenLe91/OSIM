@@ -17,7 +17,8 @@ class loginPage{
 
     EMAIL_LOGIN = "#emailLogin"
     PASSWORD_LOGIN = "#passwordLogin"
-    btnLogin = ".osim-account-form__form__btn__item.btn.btn-primary:not([type])"
+    btnLogin = ".osim-account-form__form__btn__item.btn.btn-primary:not([type])";
+    accountNameHeader = ".account-quick-access__name";
     registerAccount (firstName,lastName,email,phone,password){
         cy.get(this.registerTab).should('be.visible');
         cy.wait(3000);
@@ -46,6 +47,7 @@ class loginPage{
         cy.get(this.EMAIL_LOGIN).type(email);
         cy.get(this.PASSWORD_LOGIN).type(passWord);
         cy.get(this.btnLogin).click({force: true});
+        cy.get(this.accountNameHeader).should('be.visible');
     }
 }
 export default new loginPage();
