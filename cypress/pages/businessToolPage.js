@@ -11,7 +11,7 @@ class businessToolPage{
 
     loginBiz(userName,passWord){
         cy.get(this.loginPage).should('be.visible');
-        cy.wait(3000);
+        cy.wait(5000);
         cy.get(this.userName).type(userName);
         cy.get(this.passWord).type(passWord);
         cy.get(this.btnLogin).click({force: true});
@@ -30,9 +30,9 @@ class businessToolPage{
     searchOrderId(orderID){
         cy.get(this.orderBrowser_orderId).should('be.visible');
         cy.get(this.orderBrowser_orderId).type(orderID);
-        cy.wait(1000);
+        cy.wait(5000);
         cy.xpath(this.orderBrowser_btnSubmit).click();
-        cy.wait(1000);
+        cy.wait(5000);
         cy.get(this.orderBrowser_searchResult).should("have.text","Total 1 items");
         cy.xpath(`//div[contains(@class, 'property property-default ng-star-inserted') and contains(text(), '${orderID}')]`).should('be.visible');
         cy.xpath(`//div[contains(@class, 'property property-default ng-star-inserted') and contains(text(), '${orderID}')]`).click();

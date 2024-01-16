@@ -6,6 +6,9 @@ class cartPage {
     cartRemove = ".cart-item-information__body__remove-btn";
     cartRemovePopup = ".confirm-remove-cart > .btn-remove-cart";
     btnCheckoutDisable = ".cart-head-info__button > .cart-head-info__link.btn.btn-disable";
+    deliveryOption = ".cart-item-delivery__option";
+    couponCode = "#couponCodeValue";
+    btncouponCodeApply = "//input[@id='couponCodeValue']/../button";
     checkAndRemoveProducts() {
         cy.wait(5000)
         //go on mini cart on header
@@ -28,6 +31,16 @@ class cartPage {
                 cy.log("Cart Is Empty");     
             }           
         })
+    }
+    selectShippingMethodWithName(shippingName){
+        cy.get(this.deliveryOption).should('be.visible');
+        cy.xpath(`//label[contains(text(),'${shippingName}')]`).click();
+        cy.wait(5000)
+    }
+    inputCouponCode(couponCode){
+        cy.get(this.couponCode).should('be.visible');
+        cy.get(this.couponCode).type(couponCode);
+        cy.xpath(this.btncouponCodeApply).click();
     }
 }
 export default new cartPage();

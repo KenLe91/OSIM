@@ -2,13 +2,13 @@
   "sg": [
   {
     "country": "sg",
-    "baseURL": "https://sg.osim.com/PREPROD",
+    "baseURL": "https://preprod-sg-proxy.omc.osim.com/",
     "emailLogin": "quyenlm2@smartosc.com",
     "passwordLogin": "abc1234",
     "verifyPromoptionPage" : "OUR PROMOTIONS",
     "verifyCategoryPage" : "Product Catalogue",
-    "urlCategoryPages": "product/category/Beauty-Series",
-    "verifyProductDetails" : "uGlow Brush Ionic Scalp Massager",
+    "urlCategoryPages": "product/category/Air-Purifiers-Humidifiers-Water-Purifier",
+    "verifyProductDetails" : "uAlpine Smart 2 Air Purifier",
     "verifyWellnessHubPage": "WELLNESS HUB",
     "verifySupportPage": "Support",
     "verifyBrandStoryPage": "History and Milestone",
@@ -17,6 +17,7 @@
     "firstName": "Ang Peng",
     "lastName": "SOSC",
     "city": "Singapore",
+    "addressname": "Address Name",
     "address1": "446 Bright Hill Drive ",
     "address2": "02-111",
     "postalCode": "570466",
@@ -29,7 +30,7 @@
     "tradeInProductName": "uDivine V2 Massage Chair (Trade In Program)",
     "tradeInBrand": "uDivine",
     "tradeInModel":"EW0123456789",
-    "bizUrl": "https://prod-biz.omc.osim.com/",
+    "bizUrl": "https://preprod-biz.omc.osim.com/",
     "bizUserName": "chientm",
     "bizPassword": "123456a@"
   }
@@ -37,7 +38,7 @@
 "hk": [
   {
     "country": "hk",
-    "baseURL": "https://www.osim.com.hk/",
+    "baseURL": "https://preprod-hk-proxy.omc.osim.com/",
     "emailLogin": "quyenlm22@smartosc.com",
     "passwordLogin": "abc1234",
     "verifyPromoptionPage" : "推廣優惠",
@@ -55,7 +56,7 @@
     "address1": "Telford Gdns ",
     "address2": "Kowloon Bay",
     "postalCode": "570466",
-    "phoneNumber": "27586632",
+    "phoneNumber": "75866329",
     "isBillingAddress": "yes",
     "accountEmail" : "quyenlm2+100@gmail.com",
     "accountPassword": "Abc1234"
@@ -64,7 +65,7 @@
 "my": [
   {
     "country": "my",
-    "baseURL": "https://www.osim.com.my/",
+    "baseURL": "https://preprod-my-proxy.omc.osim.com/",
     "emailLogin": "quyenlm23@smartosc.com",
     "passwordLogin": "abc1234",
     "verifyPromoptionPage" : "OSIM Promotions",
@@ -91,7 +92,7 @@
 "tw": [
   {
     "country": "tw",
-    "baseURL": "https://www.osim.com.tw/",
+    "baseURL": "https://preprod-tw-proxy.omc.osim.com/",
     "emailLogin": "quyenlm24@smartosc.com",
     "passwordLogin": "abc1234",
     "verifyPromoptionPage" : "最新活動",
@@ -118,7 +119,7 @@
 "th": [
   {
     "country": "th",
-    "baseURL": "https://www.osim.co.th/",
+    "baseURL": "https://preprod-th-proxy.omc.osim.com/",
     "emailLogin": "quyenlm21@smartosc.com",
     "passwordLogin": "abc1234",
     "verifyPromoptionPage" : "OUR PROMOTIONS",

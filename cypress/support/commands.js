@@ -36,17 +36,18 @@ Cypress.Commands.add('solveGoogleCAPTCHA', () => {
 })
 
 Cypress.Commands.add('getOrderIdFromFailedPayment', () => {
+  cy.log("getOrderIdFromFailedPayment")
   cy.get('.payment-fail__content__instruction-message').should('be.visible');
-  cy.get('.account-quick-access-menu > a').should('exist');
-  cy.get('.account-quick-access-menu > a').invoke('attr', 'href').then(($href) => {
+  cy.wait(2000)
+  cy.url().then($href => {
     let orderID = $href.split('/').pop();
     orderID = orderID.replace('fail?Ref=', '').trim();
     return cy.wrap(orderID)
-  });
+  })
 })
 Cypress.Commands.add('isPresent', (elementSelector) => {
-    cy.get('body').then((body) => {
-      const isPresent = !!body.find(elementSelector).length;
-      return cy.wrap(isPresent)// this gives you a Chainable
-    })
+  cy.get('body').then((body) => {
+    const isPresent = !!body.find(elementSelector).length;
+    return cy.wrap(isPresent)// this gives you a Chainable
+  })
 })

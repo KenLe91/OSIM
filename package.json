@@ -4,10 +4,11 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "cypress:open:preprod": "npx cypress open --env environment=preprod --config-file=cypress.config.js",
-    "cypress:open:prod": "npx cypress open --env environment=prod --config-file=cypress.config.js",
+    "cypress:open:preprod-sg": "npx cypress open --env environment=preprod,country=sg --config-file=cypress.config.js",
+    "cypress:open:prod-sg": "npx cypress open --env environment=prod,country=sg --config-file=cypress.config.js",
     "cypress:run:preprod": "npx cypress run --env environment=preprod --config-file=cypress.config.js",
-    "cypress:run:prod": "npx cypress run --env environment=prod --config-file=cypress.config.js"
+    "cypress:run:prod": "npx cypress run --env environment=prod --config-file=cypress.config.js",
+    "cypress:run:prod-sg": "npx cypress run --env environment=prod,country=sg --config-file=cypress.config.js"
   },
   "author": "Le Minh Quyen",
   "license": "ISC",

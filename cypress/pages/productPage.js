@@ -15,15 +15,15 @@ class productPage{
     }
     clickOnBuyNow(){
         cy.wait(5000);
-        cy.get('.product-detail-header__btn > a').should('be.visible').click({ force: true });
+        cy.get('.product-detail-header__btn').should('be.not.disabled').click();
     }
     addToCart(country){
         cy.wait(5000);
-        cy.get('.col-lg-6.buying-option__right > div > div.buying-option__btn__item > span').should('be.not.disabled').click({ force: true });
         //cy.get('.add-to-cart__body__success-text').should('be.visible');
+        cy.get('.buying-option-header__btn > span').should('be.not.disabled').click();
         if(country == 'hk'){
-            cy.get('.add-to-cart__header__contents__button').should('be.visible');
-            cy.get('.add-to-cart__header__contents__button').click()
+            cy.get('.add-to-cart__header__contents__button').should('be.not.disabled');
+            cy.get('.add-to-cart__header__contents__button').click({ force: true })
         }
     }
     chooseWarranty(position){
